@@ -81,7 +81,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-center items-center py-12 px-4">
+<body class="min-h-screen flex flex-col items-center py-12 px-4">
 
   <div class="text-center mb-10 px-4">
     <h1 class="text-3xl sm:text-4xl font-extrabold mb-2 leading-tight">Master the Art of <span class="gold-text">Strategic Investment</span></h1>
@@ -112,18 +112,42 @@
     <label class="block text-sm text-gray-300">
       <div class="flex items-start gap-2">
         <input type="checkbox" required class="mt-1" />
-        <span>I agree to the <a href="#" class="underline">Terms & Conditions</a> and <a href="#" class="underline">Privacy Policy</a>. I understand that this data will be used for educational communication only.</span>
+        <span>I agree to the <a href="terms.html" class="underline">Terms & Conditions</a> and <a href="privacy.html" class="underline">Privacy Policy</a>. I understand that this data will be used for educational communication only.</span>
       </div>
     </label>
     <button id="submitBtn" type="submit" class="w-full py-2 rounded-md gold-btn font-semibold flex items-center justify-center">Join Learning Community</button>
     <p class="text-xs text-center text-gray-400">By joining, you'll receive educational content and updates about our learning programs.</p>
   </form>
 
+  <div class="max-w-3xl mt-12 px-4 text-center">
+    <h2 class="text-2xl font-bold gold-text mb-4">📊 Why Choose Us?</h2>
+    <p class="text-gray-300 mb-4">We combine real-world education with strategic decision-making practices to help learners develop skill sets that go beyond theory. Our members gain clarity and confidence through our hands-on approach, curated insights, and community-driven discussions.</p>
+    <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+      <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-60">
+        <h4 class="gold-text text-lg font-semibold mb-2">✅ Structured Learning</h4>
+        <p>Guided modules to keep you progressing steadily, at your pace.</p>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-60">
+        <h4 class="gold-text text-lg font-semibold mb-2">🧠 Thoughtful Insights</h4>
+        <p>Curated lessons that help you think critically and act intentionally.</p>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-60">
+        <h4 class="gold-text text-lg font-semibold mb-2">🌍 Global Perspective</h4>
+        <p>Learn how trends and actions impact decision-making across regions.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="backdrop" id="popupBackdrop"></div>
   <div class="popup" id="successPopup">
     <h3 class="text-xl font-bold gold-text mb-2">🎉 You're In!</h3>
     <p class="text-sm text-gray-300">You're being redirected to our exclusive WhatsApp Community...</p>
   </div>
+
+  <footer class="mt-16 text-xs text-gray-500 text-center px-6 max-w-3xl">
+    <p class="mb-1">Disclaimer: This platform involves an element of financial risk and may be addictive. Use responsibly. Terms & Conditions Applied.</p>
+    <p>Residents of all Indian states and union territories, except Andhra Pradesh, Arunachal Pradesh, Assam, Karnataka, Meghalaya, Manipur, Nagaland, Odisha, Sikkim, Telangana and Tamil Nadu, are allowed to participate.</p>
+  </footer>
 
   <script>
     const form = document.getElementById("signupForm");
