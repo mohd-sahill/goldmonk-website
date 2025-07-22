@@ -80,55 +80,53 @@
   </footer>
 
     <!-- Script -->
-  <script>
-    const form = document.getElementById("signupForm");
-    const popup = document.getElementById("successPopup");
-    const backdrop = document.getElementById("popupBackdrop");
-    const submitBtn = document.getElementById("submitBtn");
+<script>
+  const form = document.getElementById("signupForm");
+  const popup = document.getElementById("successPopup");
+  const backdrop = document.getElementById("popupBackdrop");
+  const submitBtn = document.getElementById("submitBtn");
 
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const phoneInput = this.phone.value.trim();
-      const countryCode = this.countryCode.value;
-      const fullPhone = `${countryCode} ${phoneInput}`;
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-      const data = {
-        name: this.name.value,
-        phone: fullPhone,
-        service: this.service.value
-      };
+    const phoneInput  = this.phone.value.trim();
+    const countryCode = this.countryCode.value;
+    const fullPhone   = `${countryCode} ${phoneInput}`;
 
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Submitting <span class="loader"></span>';
+    const data = {
+      name:    this.name.value,
+      phone:   fullPhone,
+      service: this.service.value
+    };
 
-      try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwns_YG08VjNFq8-dcyjNWTfaUPh4CUFt2fg28jiJffD84OI8Zz41fCo1gsVL3NjSAjpQ/exec", {
-  method: "POST",
-  mode: "no-cors",  // ❗ optional, disables preflight but limits response access
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(data)
-        });
+    submitBtn.disabled   = true;
+    submitBtn.innerHTML  = 'Submitting <span class="loader"></span>';
 
-        const result = await response.text();
-        if (result.includes("Success")) {
-          backdrop.style.display = "block";
-          popup.style.display = "block";
-          setTimeout(() => {
-            window.location.href = "https://chat.whatsapp.com/Gj0Pak8eJZqEkUCex18ujo";
-          }, 2000);
-        } else {
-          throw new Error("Unexpected server response");
-        }
-      } catch (error) {
-        alert("Something went wrong: " + error.message);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Join Learning Community";
-        this.reset();
-      }
-    });
-  </script>
+    try {
+      // fire the lead off to Apps Script (opaque no‑cors mode is OK here)
+      await fetch("https://script.google.com/macros/s/AKfycbwns_YG08VjNFq8-dcyjNWTfaUPh4CUFt2fg28jiJffD84OI8Zz41fCo1gsVL3NjSAjpQ/exec", {
+        method:  "POST",
+        mode:    "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(data)
+      });
+
+      // always show success popup & then redirect
+      backdrop.style.display = "block";
+      popup.style.display    = "block";
+      setTimeout(() => {
+        window.location.href = "https://chat.whatsapp.com/Gj0Pak8eJZqEkUCex18ujo";
+      }, 2000);
+
+    } catch (err) {
+      alert("Something went wrong: " + err.message);
+    } finally {
+      submitBtn.disabled  = false;
+      submitBtn.innerHTML = "Join Learning Community";
+      this.reset();
+    }
+  });
+</script>
+
 </body>
 </html>
