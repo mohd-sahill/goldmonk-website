@@ -1,6 +1,4 @@
-<!-- ✅ Complete Updated HTML + Google Apps Script -->
-
-<!-- index.html -->
+<!-- ✅ Restored Final HTML with All Original Sections + Fixes -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +23,7 @@
 </head>
 <body class="min-h-screen flex flex-col items-center py-12 px-4">
 
-  <!-- Banner -->
+  <!-- Top Banner Content -->
   <div class="text-center mb-10 px-4">
     <h1 class="text-3xl sm:text-4xl font-extrabold mb-2 leading-tight">Master the Art of <span class="gold-text">Strategic Investment</span></h1>
     <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-6">Join our exclusive learning community and develop skills through proven strategies, expert insights, and comprehensive education.</p>
@@ -36,7 +34,7 @@
     </div>
   </div>
 
-  <!-- Form -->
+  <!-- FORM -->
   <form id="signupForm" class="w-full max-w-md sm:max-w-lg bg-black p-6 sm:p-8 rounded-lg shadow-lg space-y-4">
     <h2 class="text-2xl font-semibold gold-text text-center mb-4">🤝 Join the Community</h2>
     <input type="text" name="name" required placeholder="Full Name" class="w-full px-4 py-2 rounded-md dark-input" />
@@ -62,67 +60,73 @@
     <label class="block text-sm text-gray-300">
       <div class="flex items-start gap-2">
         <input type="checkbox" required class="mt-1" />
-        <span>I agree to the <a href="terms.html" class="underline">Terms & Conditions</a> and <a href="privacy.html" class="underline">Privacy Policy</a>.</span>
+        <span>I agree to the <a href="terms.html" class="underline">Terms & Conditions</a> and <a href="privacy.html" class="underline">Privacy Policy</a>. I understand that this data will be used for educational communication only.</span>
       </div>
     </label>
     <button id="submitBtn" type="submit" class="w-full py-2 rounded-md gold-btn font-semibold flex items-center justify-center">Join Learning Community</button>
     <p class="text-xs text-center text-gray-400">By joining, you'll receive educational content and updates about our learning programs.</p>
   </form>
 
-  <!-- Popup -->
+  <!-- SUCCESS POPUP -->
   <div class="backdrop" id="popupBackdrop"></div>
   <div class="popup" id="successPopup">
     <h3 class="text-xl font-bold gold-text mb-2">🎉 You're In!</h3>
-    <p class="text-sm text-gray-300">Redirecting to our WhatsApp Community...</p>
+    <p class="text-sm text-gray-300">You're being redirected to our exclusive WhatsApp Community...</p>
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="mt-16 text-xs text-gray-500 text-center px-6 max-w-3xl">
-    <p class="mb-1">Disclaimer: This platform involves financial risk and may be addictive. Use responsibly.</p>
+    <p class="mb-1">Disclaimer: This platform involves an element of financial risk and may be addictive. Use responsibly. Terms & Conditions Applied.</p>
   </footer>
 
+    <!-- Script -->
   <script>
     const form = document.getElementById("signupForm");
-    const phoneError = document.getElementById("phoneError");
     const popup = document.getElementById("successPopup");
     const backdrop = document.getElementById("popupBackdrop");
     const submitBtn = document.getElementById("submitBtn");
 
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
-      const phoneRaw = this.phone.value.trim();
-      if (!/^[0-9]{7,15}$/.test(phoneRaw)) {
-        phoneError.style.display = "block";
-        return;
-      }
-      phoneError.style.display = "none";
+      const phoneInput = this.phone.value.trim();
+      const countryCode = this.countryCode.value;
+      const fullPhone = `${countryCode} ${phoneInput}`;
 
-      const fullPhone = `${this.countryCode.value} ${phoneRaw}`;
-      const data = { name: this.name.value.trim(), phone: fullPhone, service: this.service.value };
+      const data = {
+        name: this.name.value,
+        phone: fullPhone,
+        service: this.service.value
+      };
 
       submitBtn.disabled = true;
       submitBtn.innerHTML = 'Submitting <span class="loader"></span>';
 
       try {
-        const resp = await fetch("https://script.google.com/macros/s/AKfycbwns_YG08VjNFq8-dcyjNWTfaUPh4CUFt2fg28jiJffD84OI8Zz41fCo1gsVL3NjSAjpQ/exec", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+    const response = await fetch("https://script.google.com/macros/s/AKfycby3qqRs0XS7t2vuou-ce_AquQgKz1z_LyzVmBxM5iTC1NzwTrJ02QA95WXDG_J6fEsM1w/exec", {
+  method: "POST",
+  mode: "no-cors",  // ❗ optional, disables preflight but limits response access
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
         });
-        const result = await resp.json();
-        if (result.result === "Success") {
+
+        const result = await response.text();
+        if (result.includes("Success")) {
           backdrop.style.display = "block";
           popup.style.display = "block";
-          setTimeout(() => window.location.href = "https://chat.whatsapp.com/Gj0Pak8eJZqEkUCex18ujo", 2000);
+          setTimeout(() => {
+            window.location.href = "https://chat.whatsapp.com/Gj0Pak8eJZqEkUCex18ujo";
+          }, 2000);
         } else {
-          throw new Error(result.message || "Server error");
+          throw new Error("Unexpected server response");
         }
-      } catch (err) {
-        alert("Something went wrong: " + err.message);
+      } catch (error) {
+        alert("Something went wrong: " + error.message);
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = "Join Learning Community";
-        form.reset();
+        this.reset();
       }
     });
   </script>
