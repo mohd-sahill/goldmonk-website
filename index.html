@@ -79,10 +79,9 @@
     <p class="mb-1">Disclaimer: This platform involves an element of financial risk and may be addictive. Use responsibly. Terms & Conditions Applied.</p>
   </footer>
 
-  <!-- SCRIPT -->
+    <!-- Script -->
   <script>
     const form = document.getElementById("signupForm");
-    const phoneError = document.getElementById("phoneError");
     const popup = document.getElementById("successPopup");
     const backdrop = document.getElementById("popupBackdrop");
     const submitBtn = document.getElementById("submitBtn");
@@ -92,19 +91,11 @@
       const phoneInput = this.phone.value.trim();
       const countryCode = this.countryCode.value;
       const fullPhone = `${countryCode} ${phoneInput}`;
-      const service = this.service.value;
-
-      if (!/^[0-9]{7,15}$/.test(phoneInput)) {
-        phoneError.style.display = "block";
-        return;
-      } else {
-        phoneError.style.display = "none";
-      }
 
       const data = {
         name: this.name.value,
         phone: fullPhone,
-        service: service
+        service: this.service.value
       };
 
       submitBtn.disabled = true;
