@@ -1,102 +1,3 @@
-<!-- ✅ Restored Final HTML with All Original Sections + Fixes -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
- <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1288680592895897');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1288680592895897&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Goldmonk Traders</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <style>
-    body { background-color: #0c0c0c; color: #fff; font-family: 'Inter', sans-serif; }
-    .gold-text { color: #fcd34d; }
-    .gold-btn { background-color: #fcd34d; color: #000; transition: background-color 0.3s ease, transform 0.2s ease; }
-    .gold-btn:hover { background-color: #eab308; transform: scale(1.02); }
-    .dark-input { background-color: #1f1f1f; border: 1px solid #333; color: #fff; }
-    .dark-input::placeholder { color: #999; }
-    .error { color: red; font-size: 0.875rem; margin-top: -0.5rem; display: none; }
-    .popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); background: #1c1c1c; border: 2px solid #fcd34d; color: #fff; padding: 2rem; z-index: 50; text-align: center; border-radius: 12px; animation: popupFade 0.4s ease forwards; }
-    @keyframes popupFade { from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-    .backdrop { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.6); z-index: 40; }
-    .loader { border: 3px solid #f3f3f3; border-top: 3px solid #000; border-radius: 50%; width: 18px; height: 18px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-left: 0.5rem; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  </style>
-</head>
-<body class="min-h-screen flex flex-col items-center py-12 px-4">
-
-  <!-- Top Banner Content -->
-  <div class="text-center mb-10 px-4">
-    <h1 class="text-3xl sm:text-4xl font-extrabold mb-2 leading-tight">Master the Art of <span class="gold-text">Strategic Investment</span></h1>
-    <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-6">Join our exclusive learning community and develop skills through proven strategies, expert insights, and comprehensive education.</p>
-    <div class="flex flex-wrap justify-center gap-3 text-sm text-gray-400 mb-6">
-      <span>👥 10,000+ Learning Members</span>
-      <span>📚 Expert-Led Education</span>
-      <span>📈 Strategic Growth Focus</span>
-    </div>
-  </div>
-
-  <!-- FORM -->
-  <form id="signupForm" class="w-full max-w-md sm:max-w-lg bg-black p-6 sm:p-8 rounded-lg shadow-lg space-y-4">
-    <h2 class="text-2xl font-semibold gold-text text-center mb-4">🤝 Join the Community</h2>
-    <input type="text" name="name" required placeholder="Full Name" class="w-full px-4 py-2 rounded-md dark-input" />
-    <div class="flex gap-2 flex-col sm:flex-row">
-      <select name="countryCode" id="countryCode" class="px-2 py-2 rounded-md dark-input w-full sm:w-auto">
-        <option value="+91">🇮🇳 +91</option>
-        <option value="+1">🇺🇸 +1</option>
-        <option value="+44">🇬🇧 +44</option>
-        <option value="+971">🇦🇪 +971</option>
-        <option value="+61">🇦🇺 +61</option>
-        <option value="+880">🇧🇩 +880</option>
-        <option value="+94">🇱🇰 +94</option>
-      </select>
-      <input type="tel" name="phone" required placeholder="Phone Number" class="w-full px-4 py-2 rounded-md dark-input" />
-    </div>
-    <select name="service" required class="w-full px-4 py-2 rounded-md dark-input">
-      <option value="" disabled selected>Select Your Service</option>
-      <option value="Account Management">Account Management</option>
-      <option value="USDT">USDT</option>
-      <option value="Bot Enquiry">Bot Enquiry</option>
-    </select>
-    <p id="phoneError" class="error">Please enter a valid phone number.</p>
-    <label class="block text-sm text-gray-300">
-      <div class="flex items-start gap-2">
-        <input type="checkbox" required class="mt-1" />
-        <span>I agree to the <a href="terms.html" class="underline">Terms & Conditions</a> and <a href="privacy.html" class="underline">Privacy Policy</a>. I understand that this data will be used for educational communication only.</span>
-      </div>
-    </label>
-    <button id="submitBtn" type="submit" class="w-full py-2 rounded-md gold-btn font-semibold flex items-center justify-center">Join Learning Community</button>
-    <p class="text-xs text-center text-gray-400">By joining, you'll receive educational content and updates about our learning programs.</p>
-  </form>
-
-  <!-- SUCCESS POPUP -->
-  <div class="backdrop" id="popupBackdrop"></div>
-  <div class="popup" id="successPopup">
-    <h3 class="text-xl font-bold gold-text mb-2">🎉 You're In!</h3>
-    <p class="text-sm text-gray-300">You're being redirected to our exclusive WhatsApp Community...</p>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="mt-16 text-xs text-gray-500 text-center px-6 max-w-3xl">
-    <p class="mb-1">Disclaimer: This platform involves an element of financial risk and may be addictive. Use responsibly. Terms & Conditions Applied.</p>
-  </footer>
-
-    <!-- Script -->
 <script>
   const form = document.getElementById("signupForm");
   const popup = document.getElementById("successPopup");
@@ -128,6 +29,9 @@ src="https://www.facebook.com/tr?id=1288680592895897&ev=PageView&noscript=1"
         body:    JSON.stringify(data)
       });
 
+      // ✅ Manually fire Meta Pixel Lead event
+      fbq('track', 'Lead');
+
       // always show success popup & then redirect
       backdrop.style.display = "block";
       popup.style.display    = "block";
@@ -144,6 +48,3 @@ src="https://www.facebook.com/tr?id=1288680592895897&ev=PageView&noscript=1"
     }
   });
 </script>
-
-</body>
-</html>
